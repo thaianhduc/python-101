@@ -1,15 +1,26 @@
 import random
 
 # Define the function first. The execution is top down
-def sayYourName(name):
-    print(name)
 
+class Student():
+    static_field = "A static field"
+    def __init__(self, name):
+        """
+        Constructor
+        :param name: string - student name
+        """
+        self.name = name
 
-message = "This is my ever first line of Python code - Hello Python"
-print(message)
-number = input("Hey your favorite number?\n")
+    def __str__(self):
+        return self.name
 
-sayYourName("Your favorite " + number)
+    def getName(self):
+        return self.name
 
-letter = input("Expected a number but string\n")
-number = int(letter)
+class DerivedStudent(Student):
+    static_field = "A derived class"
+
+mark = Student("Mark and Jane")
+print(mark)
+print(Student.static_field)
+print(DerivedStudent.static_field)
