@@ -12,24 +12,33 @@ Working with CosmosDB requires
 Operations are per collection in Cosmos.
 '''
 config = {
-    'ENDPOINT':'',
-    'MASTER_KEY':'',
+    'ENDPOINT':'https://tad-python.documents.azure.com:443/',
+    'MASTER_KEY':'SGg2vIcxvAJO2lE3vieHJ7iFEiI6Wruqc5DF1rYE1kGa9AldFQE0LWYb9bJHt5DlWL06pChyKiio7KDumqwhwg==',
     'DATABASE':'',
     'COLLECTION':''
 }
+# Prompt users for database name and collection
+config['DATABASE'] = input("Database: ")
+config['COLLECTION'] = input("Collection: ")
 
-# Initialize the client that can talk to the server
+print(config)
+
+# 1. Initialize the client that can talk to the server
 client = cosmos_client.CosmosClient(
     url_connection=config['ENDPOINT'], 
     auth={
         'masterKey':config['MASTER_KEY']
         })
 
-# Create database
+# 2. Create a database
 db = client.CreateDatabase({'id':config['DATABASE']})
 
-# Create collection/container
+print(db)
+
+# 3. Create a collection/container
 collection = client.CreateContainer(
         db['_self'],
-        {'id':con['COLLECTION']})
+        {'id':config['COLLECTION']})
 
+print(collection)
+# 3. Create a collection/container
